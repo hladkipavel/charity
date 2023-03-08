@@ -15,14 +15,18 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@Table(name = "donations")
 public class Donation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Size(min=1)
     private Integer quantity;
-    @OneToMany
-    @JoinColumn(name = "donation_id")
+    @ManyToMany
+    @JoinTable(name = "donations_categories",
+    joinColumns = @JoinColumn(name = "donation_id"),
+    inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
     @ManyToOne
     @JoinColumn(name = "institution_id")
@@ -38,5 +42,10 @@ public class Donation {
     @Size(min=5)
     private String pickUpComment;
 
-
+    public Donation(Integer quantity, String street, String city, String zipCode) {
+        this.quantity = quantity;
+        this.street = street;
+        this.city = city;
+        this.zipCode = zipCode;
+    }
 }

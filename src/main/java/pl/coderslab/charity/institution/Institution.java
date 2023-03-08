@@ -1,14 +1,8 @@
 package pl.coderslab.charity.institution;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -18,6 +12,8 @@ import javax.validation.constraints.Size;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@Table(name = "institutions")
 public class Institution {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +23,8 @@ public class Institution {
     @Min(10)
     @Max(200)
     private String description;
+    public Institution(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 }
