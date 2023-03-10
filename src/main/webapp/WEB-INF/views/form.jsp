@@ -80,19 +80,19 @@
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
+                <c:forEach items="${categories}" var="category" >
                 <div class="form-group form-group--checkbox">
                     <label>
                         <input
                                 type="checkbox"
                                 name="categories"
-                                value="clothes-to-use"
+                                value="${category.id}"
                         />
                         <span class="checkbox"></span>
-                        <span class="description"
-                        >ubrania, które nadają się do ponownego użycia</span
-                        >
+                        <span class="description">${category.name}</span>
                     </label>
                 </div>
+                </c:forEach>
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn next-step">Dalej</button>
