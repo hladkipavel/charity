@@ -169,6 +169,15 @@ document.addEventListener("DOMContentLoaded", function() {
         nextButton2.disabled = quantity.value === '';
       });
 
+      // STEP 3
+      const radioTypes = document.querySelectorAll('input[type=radio]');
+      const nextButton3 = document.getElementById('next-button3');
+      radioTypes.forEach(radio =>{
+        radio.addEventListener('change', () => {
+          nextButton3.disabled = false;
+        });
+      });
+
       this.slides.forEach(slide => {
         slide.classList.remove("active");
 
