@@ -14,7 +14,7 @@
         </div>
 
         <div class="stats--item">
-            <em>5</em>
+            <em><c:out value="${sumAllDonations}" default="0"/></em>
             <h3>Przekazanych darów</h3>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
                 quam.</p>

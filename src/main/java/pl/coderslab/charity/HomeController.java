@@ -22,7 +22,8 @@ public class HomeController {
     public String homeAction(Model model){
         List<Institution> institutions = institutionService.getAllInstitutions();
         model.addAttribute("institutions", institutions);
-        model.addAttribute("countBags", donationService.countAllBagsGiven());
+        model.addAttribute("countBags", donationService.getCountAllBagsGiven());
+        model.addAttribute("sumAllDonations", donationService.getSumAllDonations());
         return "index";
     }
 }
