@@ -213,6 +213,29 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
       // TODO: get data from inputs and show them in summary
+      // COUNT BAGS
+      const countBags = document.querySelector('input[name=quantity]').value;
+      if(countBags == 1){
+        document.getElementById('sum-count').innerText = '1 worek: ';
+      }else if (countBags > 1 && countBags < 5){
+        document.getElementById('sum-count').innerText = countBags + ' worki: ';
+      }else{
+        document.getElementById('sum-count').innerText = countBags + ' worków: ';
+      };
+      
+      const categories = document.querySelectorAll('input[name=categories]');
+      categories.forEach(category => category.addEventListener('change', ()=>{
+        category.parentElement.children[2].toggleAttribute('mark');
+      }));
+      document.getElementById('next-button4').addEventListener('click', ()=>{
+        const allMarks = document.querySelectorAll('[mark]');
+        const namesOfCategories = [];
+        allMarks.forEach(el => namesOfCategories.push(el.innerHTML));
+        const sumCategory = document.getElementById('sum-category');
+        sumCategory.innerText = namesOfCategories.join(', ');
+      });
+      
+
     }
 
   }

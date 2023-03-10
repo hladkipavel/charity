@@ -86,8 +86,7 @@
                         <input
                                 type="checkbox"
                                 name="categories"
-                                value="${category.id}"
-                        />
+                                value="${category.id}"/>
                         <span class="checkbox"></span>
                         <span class="description">${category.name}</span>
                     </label>
@@ -203,16 +202,15 @@
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
-                                <span class="summary--text"
-                                >4 worki ubrań w dobrym stanie dla dzieci</span
-                                >
+                                <span class="summary--text">
+                                    <span id="sum-count"></span><span id="sum-category"></span></span>
                             </li>
 
                             <li>
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text"
-                                >Dla fundacji "Mam marzenie" w Warszawie</span
-                                >
+                                <span class="summary--text">Dla fundacji:
+                                    <span id="sum-institution"></span>
+                                </span>
                             </li>
                         </ul>
                     </div>
