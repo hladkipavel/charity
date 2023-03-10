@@ -18,4 +18,7 @@ public class DonationService {
     public void saveDonation(Donation donation){
         donationRepository.save(donation);
     }
+    public Integer countAllBagsGiven(){
+        return donationRepository.countAllBagsGiven();
+    }
 }
