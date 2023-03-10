@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.innerText = this.currentStep;
 
       // TODO: Validation
-      //STEP 1
+      // STEP 1
       const checkboxes = document.querySelectorAll('input[type=checkbox]');
       const nextButton = document.getElementById('next-button');
 
@@ -160,6 +160,13 @@ document.addEventListener("DOMContentLoaded", function() {
           const check = Array.from(checkboxes).some(checkbox => checkbox.checked);
           nextButton.disabled = !check;
         });
+      });
+
+      // STEP 2
+      const quantity = document.querySelector('input[name=quantity]');
+      const nextButton2 = document.getElementById('next-button2');
+      quantity.addEventListener('input', ()=>{
+        nextButton2.disabled = quantity.value === '';
       });
 
       this.slides.forEach(slide => {
