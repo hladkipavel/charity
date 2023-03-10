@@ -178,6 +178,29 @@ document.addEventListener("DOMContentLoaded", function() {
         });
       });
 
+      // STEP 4
+      const street = document.querySelector('input[name=street]');
+      const city = document.querySelector('input[name=city]');
+      const zipCode = document.querySelector('input[name=zipCode]');
+      const phone = document.querySelector('input[name=phone]');
+      const nextButton4 = document.getElementById('next-button4');
+      
+      [street, city, zipCode, phone].forEach(el => {
+        el.addEventListener('input', () =>{
+          const checkAllData = street.value !== '' && city.value !== '' && zipCode.value !== '' && phone.value.match(/^[1-9]{1}\d{8}$/);
+          nextButton4.disabled = !checkAllData;
+        });
+      });
+
+      const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+      const day = String(currentDate.getDate()).padStart(2, '0');
+      const minDate = `${year}-${month}-${day}`;
+      
+      document.querySelector('input[name=pickUpDate]').setAttribute('min', minDate);
+
+
       this.slides.forEach(slide => {
         slide.classList.remove("active");
 
