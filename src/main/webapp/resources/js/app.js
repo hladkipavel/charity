@@ -151,6 +151,16 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.innerText = this.currentStep;
 
       // TODO: Validation
+      //STEP 1
+      const checkboxes = document.querySelectorAll('input[type=checkbox]');
+      const nextButton = document.getElementById('next-button');
+
+      checkboxes.forEach(checkbox=>{
+        checkbox.addEventListener('change', ()=>{
+          const check = Array.from(checkboxes).some(checkbox => checkbox.checked);
+          nextButton.disabled = !check;
+        });
+      });
 
       this.slides.forEach(slide => {
         slide.classList.remove("active");
