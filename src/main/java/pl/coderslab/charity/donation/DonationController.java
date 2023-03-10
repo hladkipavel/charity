@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.category.Category;
 import pl.coderslab.charity.category.CategoryService;
+import pl.coderslab.charity.institution.Institution;
+import pl.coderslab.charity.institution.InstitutionService;
 
 import java.util.List;
 
@@ -16,6 +18,7 @@ import java.util.List;
 @RequestMapping("/form")
 public class DonationController {
     private CategoryService categoryService;
+    private InstitutionService institutionService;
 
     @GetMapping
     public String showFrom(Model model){
@@ -27,5 +30,9 @@ public class DonationController {
     @ModelAttribute("categories")
     public List<Category> getAllCategories(){
         return categoryService.getAllCategories();
+    }
+    @ModelAttribute("institutions")
+    public List<Institution> getAllInstitutions(){
+        return institutionService.getAllInstitutions();
     }
 }
