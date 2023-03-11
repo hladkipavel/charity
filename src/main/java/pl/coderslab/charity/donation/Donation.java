@@ -6,9 +6,12 @@ import pl.coderslab.charity.category.Category;
 import pl.coderslab.charity.institution.Institution;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,16 +25,17 @@ public class Donation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Size(min=1)
+
     private Integer quantity;
     @ManyToMany
     @JoinTable(name = "donations_categories",
     joinColumns = @JoinColumn(name = "donation_id"),
     inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private List<Category> categories;
+    private List<Category> categories = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "institution_id")
     private Institution institution;
+    private String phone;
     @Size(min=2)
     private String street;
     @Size(min=2)
@@ -40,13 +44,14 @@ public class Donation {
     private String zipCode;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
-
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime pickUpTime;
     @Size(min=5)
     private String pickUpComment;
 
-    public Donation(Integer quantity, String street, String city, String zipCode) {
+    public Donation(Integer quantity, String phone, String street, String city, String zipCode) {
         this.quantity = quantity;
+        this.phone = phone;
         this.street = street;
         this.city = city;
         this.zipCode = zipCode;
