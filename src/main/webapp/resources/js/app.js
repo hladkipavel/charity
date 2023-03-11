@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function() {
       
       [street, city, zipCode, phone].forEach(el => {
         el.addEventListener('input', () =>{
-          const checkAllData = street.value !== '' && city.value !== '' && zipCode.value.match(/^[1-9]{1}\d{1}-\d{3}$/) && phone.value.match(/^[1-9]{1}\d{2}-\d{3}-\d{3}$/);
+          const checkAllData = street.value !== '' && city.value !== '' && zipCode.value.match(/^[1-9]{1}\d{1}-\d{3}$/) && phone.value.match(/^[1-9]{1}\d{2} \d{3} \d{3}$/);
           nextButton4.disabled = !checkAllData;
         });
       });
@@ -202,12 +202,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // Validation ZipCode
       zipCode.addEventListener('input', ()=>{
-        const v = zipCode.value.replace(/\D/g, '');
-        if(inputZip.length > 2 && inputZip.length < 3){
-          zipCode.value = `${inputZip.slice(0, 2)}-${inputZip.slice(2, 5)}`;
+        const input = zipCode.value.replace(/\D/g, '');
+        if(input.length > 2){
+          zipCode.value = `${input.slice(0, 2)}-${input.slice(2, 5)}`;
         }
       });
-      // Validation phone
+        // Validation phone
       phone.addEventListener('input', ()=>{
         const inputPhone = phone.value.replace(/\D/g, '');
         if(inputPhone.length > 3 && inputPhone.length < 7){
