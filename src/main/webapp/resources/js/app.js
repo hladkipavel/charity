@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function() {
       
       [street, city, zipCode, phone].forEach(el => {
         el.addEventListener('input', () =>{
-          const checkAllData = street.value !== '' && city.value !== '' && zipCode.value !== '' && phone.value.match(/^[1-9]{1}\d{8}$/);
+          const checkAllData = street.value !== '' && city.value !== '' && zipCode.value.match(/^[1-9]{1}\d{1}-\d{3}$/) && phone.value.match(/^[1-9]{1}\d{2}-\d{3}-\d{3}$/);
           nextButton4.disabled = !checkAllData;
         });
       });
@@ -199,6 +199,24 @@ document.addEventListener("DOMContentLoaded", function() {
       const minDate = `${year}-${month}-${day}`;
       
       document.querySelector('input[name=pickUpDate]').setAttribute('min', minDate);
+
+      // Validation ZipCode
+      zipCode.addEventListener('input', ()=>{
+        const v = zipCode.value.replace(/\D/g, '');
+        if(inputZip.length > 2 && inputZip.length < 3){
+          zipCode.value = `${inputZip.slice(0, 2)}-${inputZip.slice(2, 5)}`;
+        }
+      });
+      // Validation phone
+      phone.addEventListener('input', ()=>{
+        const inputPhone = phone.value.replace(/\D/g, '');
+        if(inputPhone.length > 3 && inputPhone.length < 7){
+          phone.value = `${inputPhone.slice(0, 3)} ${inputPhone.slice(3, 6)}`;
+        }else if(inputPhone.length >= 6){
+          phone.value = `${inputPhone.slice(0, 3)} ${inputPhone.slice(3, 6)} ${inputPhone.slice(6, 9)}`;
+        }
+      });
+
 
 
       this.slides.forEach(slide => {
@@ -247,7 +265,9 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(markInst);
         sumInst.innerText = markInst.innerHTML;
       });
-      
+
+      // ADRESS AND PHONE
+
 
     }
 
