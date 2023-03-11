@@ -175,7 +175,7 @@
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Godzina <input type="time" name="pickUptime" /> </label>
+                            <label> Godzina <input type="time" name="pickUpTime" /> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
@@ -229,9 +229,9 @@
                         <div class="form-section--column">
                             <h4>Termin odbioru:</h4>
                             <ul>
-                                <li>13/12/2018</li>
-                                <li>15:40</li>
-                                <li>Brak uwag</li>
+                                <li><span id="sum-date"></span></li>
+                                <li><span id="sum-time"></span></li>
+                                <li><span id="sum-comment"></span></li>
                             </ul>
                         </div>
                     </div>

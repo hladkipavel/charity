@@ -197,8 +197,10 @@ document.addEventListener("DOMContentLoaded", function() {
       const month = String(currentDate.getMonth() + 1).padStart(2, '0');
       const day = String(currentDate.getDate()).padStart(2, '0');
       const minDate = `${year}-${month}-${day}`;
+      const timeDefault =  String(currentDate.getHours()) + "\:" +  String(currentDate.getMinutes());
       
       document.querySelector('input[name=pickUpDate]').setAttribute('min', minDate);
+      document.querySelector('input[name=pickUpTime]').setAttribute('value', timeDefault);
 
       // Validation ZipCode
       zipCode.addEventListener('input', ()=>{
@@ -266,12 +268,22 @@ document.addEventListener("DOMContentLoaded", function() {
         sumInst.innerText = markInst.innerHTML;
       });
 
-      // ADRESS AND PHONE
+      // ADDRESS OF RECEIPT
       document.getElementById('sum-street').innerText = street.value;
       document.getElementById('sum-city').innerText = city.value;
       document.getElementById('sum-zip').innerText = zipCode.value;
       document.getElementById('sum-phone').innerText = phone.value;
 
+      // DATE OF RECEIPT
+      const date = document.querySelector('input[name=pickUpDate]');
+      date.defaultValue = minDate;
+      document.getElementById('sum-date').innerText = date.value;
+      const time = document.querySelector('input[name=pickUpTime]');
+      time.defaultValue = timeDefault;
+      document.getElementById('sum-time').innerText = time.value;
+      const comment = document.querySelector('textarea[name=pickUpComment]');
+      comment.defaultValue = 'brak uwagi';
+      document.getElementById('sum-comment').innerText = comment.value;
     }
 
   }
