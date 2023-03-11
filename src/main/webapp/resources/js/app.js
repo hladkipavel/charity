@@ -267,7 +267,10 @@ document.addEventListener("DOMContentLoaded", function() {
       });
 
       // ADRESS AND PHONE
-
+      document.getElementById('sum-street').innerText = street.value;
+      document.getElementById('sum-city').innerText = city.value;
+      document.getElementById('sum-zip').innerText = zipCode.value;
+      document.getElementById('sum-phone').innerText = phone.value;
 
     }
 

@@ -219,10 +219,10 @@
                         <div class="form-section--column">
                             <h4>Adres odbioru:</h4>
                             <ul>
-                                <li>Prosta 51</li>
-                                <li>Warszawa</li>
-                                <li>99-098</li>
-                                <li>123 456 789</li>
+                                <li><span id="sum-street"></span></li>
+                                <li><span id="sum-city"></span></li>
+                                <li><span id="sum-zip"></span></li>
+                                <li><span id="sum-phone"></span></li>
                             </ul>
                         </div>
 
