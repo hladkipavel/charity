@@ -126,11 +126,11 @@
                         <input type="radio" name="institution" value="${institution.id}" />
                         <span class="checkbox radio"></span>
                         <span class="description">
-                  <div class="title">${institution.name}</div>
-                  <div class="subtitle">
-                    Cel i misja: ${institution.description}
-                  </div>
-                </span>
+                            <div class="title">${institution.name}</div>
+                            <div class="subtitle">
+                                Cel i misja: ${institution.description}
+                            </div>
+                        </span>
                     </label>
                 </div>
                 </c:forEach>

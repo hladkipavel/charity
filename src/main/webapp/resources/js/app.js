@@ -213,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
       // TODO: get data from inputs and show them in summary
-      // COUNT BAGS
+      // COUNT BAGS WITH NAME
       const countBags = document.querySelector('input[name=quantity]').value;
       if(countBags == 1){
         document.getElementById('sum-count').innerText = '1 worek: ';
@@ -232,7 +232,20 @@ document.addEventListener("DOMContentLoaded", function() {
         const namesOfCategories = [];
         allMarks.forEach(el => namesOfCategories.push(el.innerHTML));
         const sumCategory = document.getElementById('sum-category');
-        sumCategory.innerText = namesOfCategories.join(', ');
+        sumCategory.innerText = namesOfCategories.join('; ');
+      });
+
+      // INSTITUTION
+      const institutions = document.querySelectorAll('input[name=institution]');
+      institutions.forEach(inst => inst.addEventListener('change', ()=>{
+        inst.parentElement.children[2].children[0].toggleAttribute('markInst');
+      }));
+      document.getElementById('next-button4').addEventListener('click', ()=>{
+        const sumInst = document.getElementById('sum-institution');
+        console.log(sumInst);
+        const markInst = document.querySelector('[markInst]');
+        console.log(markInst);
+        sumInst.innerText = markInst.innerHTML;
       });
       
 
