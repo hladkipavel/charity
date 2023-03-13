@@ -25,7 +25,7 @@
     <h2>Zaloguj się</h2>
     <form>
         <div class="form-group">
-            <input type="email" name="email" placeholder="Email" />
+            <input type="text" name="username" placeholder="Username" />
         </div>
         <div class="form-group">
             <input type="password" name="password" placeholder="Hasło" />

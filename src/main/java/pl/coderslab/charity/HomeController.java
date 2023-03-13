@@ -19,7 +19,7 @@ public class HomeController {
     private DonationService donationService;
 
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String homeAction(Model model){
         List<Institution> institutions = institutionService.getAllInstitutions();
         model.addAttribute("institutions", institutions);
@@ -30,5 +30,9 @@ public class HomeController {
     @GetMapping("/login")
     public String loginForm(){
         return "login";
+    }
+    @GetMapping("/register")
+    public String registerForm(){
+        return "register";
     }
 }
