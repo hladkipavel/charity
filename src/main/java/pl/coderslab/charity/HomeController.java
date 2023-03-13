@@ -3,6 +3,7 @@ package pl.coderslab.charity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.donation.DonationService;
 import pl.coderslab.charity.institution.Institution;
@@ -25,5 +26,9 @@ public class HomeController {
         model.addAttribute("countBags", donationService.getCountAllBagsGiven());
         model.addAttribute("sumAllDonations", donationService.getSumAllDonations());
         return "index";
+    }
+    @GetMapping("/login")
+    public String loginForm(){
+        return "login";
     }
 }
