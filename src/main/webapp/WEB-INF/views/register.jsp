@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <jsp:include page="header.jsp"/>
 <body>
 <header>
@@ -23,7 +24,13 @@
 
 <section class="login-page">
     <h2>Załóż konto</h2>
-    <form>
+    <form:form method="post" modelAttribute="user">
+        <div class="form-group">
+            <input type="text" name="firstName" placeholder="First name" />
+        </div>
+        <div class="form-group">
+            <input type="text" name="lastName" placeholder="Last name" />
+        </div>
         <div class="form-group">
             <input type="email" name="email" placeholder="Email" />
         </div>
@@ -35,9 +42,9 @@
         </div>
 
         <div class="form-group form-group--buttons">
-            <a href="login.html" class="btn btn--without-border">Zaloguj się</a>
+            <a href="/login" class="btn btn--without-border">Zaloguj się</a>
             <button class="btn" type="submit">Załóż konto</button>
         </div>
-    </form>
+    </form:form>
 </section>
 <jsp:include page="footer.jsp"/>

@@ -7,12 +7,12 @@
 <header>
     <nav class="container container--70">
         <ul class="nav--actions">
-            <li><a href="#">Zaloguj</a></li>
-            <li class="highlighted"><a href="#">Załóż konto</a></li>
+            <li><a href="/login">Zaloguj</a></li>
+            <li class="highlighted"><a href="/register">Załóż konto</a></li>
         </ul>
 
         <ul>
-            <li><a href="../../resources/html/index.html" class="btn btn--without-border active">Start</a></li>
+            <li><a href="/form" class="btn btn--without-border active">Start</a></li>
             <li><a href="../../resources/html/index.html#steps" class="btn btn--without-border">O co chodzi?</a></li>
             <li><a href="../../resources/html/index.html#about-us" class="btn btn--without-border">O nas</a></li>
             <li><a href="../../resources/html/index.html#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
@@ -23,9 +23,12 @@
 
 <section class="login-page">
     <h2>Zaloguj się</h2>
-    <form>
+    <form method="post">
+        <input type="hidden"
+               name="${_csrf.parameterName}"
+               value="${_csrf.token}"/>
         <div class="form-group">
-            <input type="text" name="username" placeholder="Username" />
+            <input type="email" name="username" placeholder="Email" />
         </div>
         <div class="form-group">
             <input type="password" name="password" placeholder="Hasło" />
