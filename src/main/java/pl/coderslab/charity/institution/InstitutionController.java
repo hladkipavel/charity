@@ -20,6 +20,17 @@ public class InstitutionController {
         model.addAttribute("institutions", institutions);
         return "/admin/institutions-list";
     }
+    @GetMapping("/add-institution")
+    public String showAddInstitutionForm(Model model){
+        Institution institution = new Institution();
+        model.addAttribute("institution", institution);
+        return "/admin/add-institution-form";
+    }
+    @PostMapping("/add-institution")
+    public String addNewInstitution(Institution institution){
+        institutionService.saveInstitution(institution);
+        return "redirect:/admin/institutions-list";
+    }
     @GetMapping("/edit/{id}")
     public String editInstitutionForm(@PathVariable Long id, Model model){
         Institution institution = institutionService.findById(id);
@@ -31,8 +42,8 @@ public class InstitutionController {
         Institution institutionBD = institutionService.findById(institution.getId());
         institutionBD.setName(institution.getName());
         institutionBD.setDescription(institution.getDescription());
-        institutionService.saveInstitution(institutionBD);
-        return "redirect:/institution";
+        institutionService.saveInstitution(institution);
+        return "redirect:/admin/institution";
     }
 
 }

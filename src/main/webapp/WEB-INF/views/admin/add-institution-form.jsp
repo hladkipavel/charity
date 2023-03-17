@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
 
-    <link rel="stylesheet" href="<c:url value="../resources/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="../../resources/css/style.css"/>"/>
 </head>
 <header class="header--form-page">
     <nav class="container container--70">
@@ -64,32 +64,14 @@
     </div>
 </header>
 <body>
-          <!-- Page Heading -->
-         <div class="container-div">
-             <table>
-                 <thead>
-                 <tr>
-                     <th>NAZWA</th>
-                     <th>OPIS</th>
-                     <th>AKCJE</th>
-                 </tr>
-                 </thead>
-                 <tbody>
-            <c:forEach items="${institutions}" var="institution" varStatus="status">
-                 <tr>
-                     <input type="hidden" name="id" value="${institution.id}" />
-                     <td>${institution.name}</td>
-                     <td>${institution.description}</td>
-                     <td>
-                         <a class="btn-option" href='<c:url value="/admin/view/${institution.id}"/>'>Szczegóły</a>
-                         <a class="btn-option" href='<c:url value="/admin/edit/${institution.id}"/>'>Edit</a>
-                         <a class="btn-option" href='<c:url value="/admin/delete/${institution.id}"/>'>Usuń</a>
-                     </td>
-                 </tr>
-            </c:forEach>
-                 <h2><a class="btn-option" href='<c:url value="/admin/add-institution"/>'>Dodać nową fundacje</a></br></h2>
-                 </tbody>
-             </table>
-         </div>
+<form:form method="post" action="/admin/add-institution" modelAttribute="institution">
+    <h2>Dodanie nowej fundacji</h2>
+    <form:label path="name" for="name">Imię fundacji:</form:label>
+    <form:input path="name" type="text" name="name" id="name"/>
+    <form:label path="description" for="description">Opis fundacji:</form:label>
+    <form:input path="description" type="text" name="description" id="description"/>
+
+    <input type="submit" value="Dodać">
+</form:form>
 </body>
 <jsp:include page="../footer.jsp"/>
