@@ -38,7 +38,7 @@ public class DonationController {
         model.addAttribute("donation", donation);
         model.addAttribute("userName", user.getFirstName());
         if(authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))){
-            return "admin/admin-main";
+            return "admin/admin-form";
         }
         return "form";
     }
