@@ -13,7 +13,7 @@ public class InstitutionService {
         return institutionRepository.findAll();
     }
     public Institution findById(Long id){
-        return institutionRepository.getById(id);
+        return institutionRepository.findById(id).orElse(null);
     }
     public void saveInstitution(Institution institution){
         institutionRepository.save(institution);

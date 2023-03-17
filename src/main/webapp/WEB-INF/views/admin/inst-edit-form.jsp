@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
 
-    <link rel="stylesheet" href="<c:url value="../resources/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="../../resources/css/style.css"/>"/>
 </head>
 <header class="header--form-page">
     <nav class="container container--70">
@@ -64,31 +64,15 @@
     </div>
 </header>
 <body>
-          <!-- Page Heading -->
-         <div class="container-div">
-             <table>
-                 <thead>
-                 <tr>
-                     <th>NAZWA</th>
-                     <th>OPIS</th>
-                     <th>AKCJE</th>
-                 </tr>
-                 </thead>
-                 <tbody>
-            <c:forEach items="${institutions}" var="institution" varStatus="status">
-                 <tr>
-                     <input type="hidden" name="id" value="${institution.id}" />
-                     <td>${institution.name}</td>
-                     <td>${institution.description}</td>
-                     <td>
-                         <a class="btn-option" href='<c:url value="/admin/view/${institution.id}"/>'>Szczegóły</a>
-                         <a class="btn-option" href='<c:url value="/admin/edit/${institution.id}"/>'>Edit</a>
-                         <a class="btn-option" href='<c:url value="/admin/delete/${institution.id}"/>'>Usuń</a>
-                     </td>
-                 </tr>
-            </c:forEach>
-                 </tbody>
-             </table>
-         </div>
+<form:form method="post" action="/admin/edit" modelAttribute="institution">
+    <h2>Edycja danych fundacji</h2>
+    <input type="hidden" name="id" value="${institution.id}" />
+    <label for="name">Imię fundacji:</label>
+    <input type="text" name="name" id="name" required value="${institution.name}">
+    <label for="description">Opis fundacji:</label>
+    <input type="text" name="description" id="description" required value="${institution.description}">
+
+    <input type="submit" value="Edytować">
+</form:form>
 </body>
 <jsp:include page="../footer.jsp"/>
