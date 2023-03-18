@@ -18,18 +18,18 @@ public class InstitutionController {
     public String showInstitutionList(Model model){
         List<Institution> institutions = institutionService.getAllInstitutions();
         model.addAttribute("institutions", institutions);
-        return "/admin/institutions-list";
+        return "/admin/inst-list";
     }
     @GetMapping("/add-institution")
     public String showAddInstitutionForm(Model model){
         Institution institution = new Institution();
         model.addAttribute("institution", institution);
-        return "/admin/add-institution-form";
+        return "/admin/onst-add-form";
     }
     @PostMapping("/add-institution")
     public String addNewInstitution(Institution institution){
         institutionService.saveInstitution(institution);
-        return "redirect:/admin/institutions-list";
+        return "redirect:/admin/institution";
     }
     @GetMapping("/edit/{id}")
     public String editInstitutionForm(@PathVariable Long id, Model model){
@@ -39,9 +39,6 @@ public class InstitutionController {
     }
     @PostMapping("/edit")
     public String saveEditedInstitution(Institution institution){
-        Institution institutionBD = institutionService.findById(institution.getId());
-        institutionBD.setName(institution.getName());
-        institutionBD.setDescription(institution.getDescription());
         institutionService.saveInstitution(institution);
         return "redirect:/admin/institution";
     }
