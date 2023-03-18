@@ -20,8 +20,7 @@ public class Institution {
     private Long id;
     @Size(min=2)
     private String name;
-    @Min(10)
-    @Max(200)
+    @Size(min=2, max=200)
     private String description;
     public Institution(String name, String description) {
         this.name = name;
