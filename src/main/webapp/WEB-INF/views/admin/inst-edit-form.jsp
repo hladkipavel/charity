@@ -64,15 +64,15 @@
     </div>
 </header>
 <body>
-<form:form method="post" action="/admin/edit" modelAttribute="institution">
+<form:form cssClass="form-admin" method="post" action="/admin/edit" modelAttribute="institution">
     <h2>Edycja danych fundacji</h2>
-    <input type="hidden" name="id" value="${institution.id}" />
-    <label for="name">Imię fundacji:</label>
-    <input type="text" name="name" id="name" required value="${institution.name}">
-    <label for="description">Opis fundacji:</label>
-    <input type="text" name="description" id="description" required value="${institution.description}">
+    <input class="input-admin" type="hidden" name="id" value="${institution.id}" />
+    <label class="label-admin" for="name">Imię fundacji:</label>
+    <input class="input-admin" type="text" name="name" id="name" required value="${institution.name}">
+    <label class="label-admin" for="description">Opis fundacji:</label>
+    <input class="input-admin" type="text" name="description" id="description" required value="${institution.description}">
 
-    <input type="submit" value="Edytować">
+    <input class="input-admin" type="submit" value="Edytować">
 </form:form>
 </body>
 <jsp:include page="../footer.jsp"/>

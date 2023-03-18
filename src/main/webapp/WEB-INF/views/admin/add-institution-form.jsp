@@ -64,14 +64,14 @@
     </div>
 </header>
 <body>
-<form:form method="post" action="/admin/add-institution" modelAttribute="institution">
+<form:form cssClass="form-admin" method="post" action="/admin/add-institution" modelAttribute="institution">
     <h2>Dodanie nowej fundacji</h2>
-    <form:label path="name" for="name">Imię fundacji:</form:label>
-    <form:input path="name" type="text" name="name" id="name"/>
-    <form:label path="description" for="description">Opis fundacji:</form:label>
-    <form:input path="description" type="text" name="description" id="description"/>
+    <form:label cssClass="label-admin" path="name" for="name">Imię fundacji:</form:label>
+    <form:input cssClass="input-admin" path="name" type="text" name="name" id="name"/>
+    <form:label cssClass="label-admin" path="description" for="description">Opis fundacji:</form:label>
+    <form:input cssClass="input-admin" path="description" type="text" name="description" id="description"/>
 
-    <input type="submit" value="Dodać">
+    <input class="input-admin" type="submit" value="Dodać">
 </form:form>
 </body>
 <jsp:include page="../footer.jsp"/>
