@@ -24,7 +24,7 @@ public class InstitutionController {
     public String showAddInstitutionForm(Model model){
         Institution institution = new Institution();
         model.addAttribute("institution", institution);
-        return "/admin/onst-add-form";
+        return "/admin/inst-add-form";
     }
     @PostMapping("/add-institution")
     public String addNewInstitution(Institution institution){
@@ -40,6 +40,17 @@ public class InstitutionController {
     @PostMapping("/edit")
     public String saveEditedInstitution(Institution institution){
         institutionService.saveInstitution(institution);
+        return "redirect:/admin/institution";
+    }
+    @GetMapping("/delete/{id}")
+    public String showDeleteConfirmForm(@PathVariable Long id, Model model){
+        Institution institution = institutionService.findById(id);
+        model.addAttribute("institution", institution);
+        return "/admin/inst-delete-form";
+    }
+    @PostMapping("/delete")
+    public String deleteInstitution(@RequestParam Long id){
+        institutionService.deleteInstitution(id);
         return "redirect:/admin/institution";
     }
 

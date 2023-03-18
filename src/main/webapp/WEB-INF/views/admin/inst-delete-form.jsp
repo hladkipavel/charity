@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
 
-    <link rel="stylesheet" href="<c:url value="../resources/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="../../resources/css/style.css"/>"/>
 </head>
 <header class="header--form-page">
     <nav class="container container--70">
@@ -63,12 +63,17 @@
     </div>
 </header>
 <body>
-<body>
-<form id="deleteForm" action="" method="post">
-    <h3>Czy napewno chesz to usunąć?</h3>
-    <input type="submit" name="delete" value="Tak">
-    <button type="button" onclick="cancelDelete()">Nie</button>
+<form class="form-delete" action="/admin/delete" method="post">
+    <input type="hidden" name="id" value="${institution.id}">
+<div class="form-container-delete">
+    <div class="form-delete">
+        <h3 class="h3-delete">Czy napewno chesz to usunąć ${institution.name} ?</h3>
+        <div class="form-buttons-delete">
+            <input  type="submit" name="delete" value="Tak">
+            <a href='<c:url value="/admin/institution"/>'>Nie</a>
+        </div>
+    </div>
+</div>
 </form>
-</body>
 </body>
 <jsp:include page="../footer.jsp"/>

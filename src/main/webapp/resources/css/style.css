@@ -1931,3 +1931,57 @@ tbody td {
 .input-admin:valid {
   border: 2px solid green;
 }
+/* DELETE CONFIRM FORM */
+ .form-container-delete {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   background-color: rgba(0, 0, 0, 0.4);
+ }
+
+.form-delete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.form-delete .h3-delete {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.form-buttons-delete {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.form-buttons-delete .button-delete{
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.form-buttons-delete button.yes {
+  background-color: #4CAF50;
+}
+
+.form-buttons-delete button.no {
+  background-color: #f44336;
+}
+
