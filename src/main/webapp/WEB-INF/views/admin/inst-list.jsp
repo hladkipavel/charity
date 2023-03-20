@@ -63,7 +63,7 @@
     </div>
 </header>
 <body>
-          <!-- Page Heading -->
+<h2><i>LISTA FUNDACJI</i></h2>
          <div class="container-div">
              <table>
                  <thead>
@@ -80,7 +80,7 @@
                      <td>${institution.name}</td>
                      <td>${institution.description}</td>
                      <td>
-                         <a class="btn-option" href='<c:url value="/admin/view/${institution.id}"/>'>Szczegóły</a>
+                         <a class="btn-option" href='<c:url value="/admin/details/${institution.id}"/>'>Szczegóły</a>
                          <a class="btn-option" href='<c:url value="/admin/edit/${institution.id}"/>'>Edit</a>
                          <a class="btn-option" href='<c:url value="/admin/delete/${institution.id}"/>'>Usuń</a>
                      </td>
@@ -91,4 +91,4 @@
              </table>
          </div>
 </body>
-<jsp:include page="../footer.jsp"/>
+<jsp:include page="footer-admin.jsp"/>

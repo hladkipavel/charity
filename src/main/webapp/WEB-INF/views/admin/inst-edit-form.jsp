@@ -63,6 +63,7 @@
     </div>
 </header>
 <body>
+<h2><i>EDYCJA DANYCH FUNDACJI</i></h2>
 <form:form cssClass="form-admin" method="post" action="/admin/edit" modelAttribute="institution">
     <h2>Edycja danych fundacji</h2>
     <input class="input-admin" type="hidden" name="id" value="${institution.id}" />
@@ -74,4 +75,4 @@
     <input class="input-admin" type="submit" value="Edytować">
 </form:form>
 </body>
-<jsp:include page="../footer.jsp"/>
+<jsp:include page="footer-admin.jsp"/>

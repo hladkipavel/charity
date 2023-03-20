@@ -20,7 +20,7 @@
             <li class="logged-user">
                 Witaj <sec:authentication property="principal.username"/>
                 <ul class="dropdown">
-                    <li><a href="#">Profil</a></li>
+                    <li><a href="/admin/details/${institution.id}">Profil</a></li>
                     <li><a href="#">Moje zbiórki</a></li>
                     <li><a href="/logout">Wyloguj</a></li>
                 </ul>
@@ -63,15 +63,29 @@
     </div>
 </header>
 <body>
-<h2><i>DODAWANIE NOWEJ FUNDACJI</i></h2>
-<form:form cssClass="form-admin" method="post" action="/admin/add-institution" modelAttribute="institution">
-    <h2>Dodanie nowej fundacji</h2>
-    <form:label cssClass="label-admin" path="name" for="name">Imię fundacji:</form:label>
-    <form:input cssClass="input-admin" path="name" type="text" name="name" id="name"/>
-    <form:label cssClass="label-admin" path="description" for="description">Opis fundacji:</form:label>
-    <form:input cssClass="input-admin" path="description" type="text" name="description" id="description"/>
-
-    <input class="input-admin" type="submit" value="Dodać">
-</form:form>
+<div class="container-div">
+    <table>
+        <h2><i>SZCZEGÓŁY FUNDACJI</i></h2>
+        <thead>
+        <tr>
+            <th>NAZWA</th>
+            <th>OPIS</th>
+            <th>AKCJE</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <input type="hidden" name="id" value="${institution.id}" />
+                <td>${institution.name}</td>
+                <td>${institution.description}</td>
+                <td>
+                    <a class="btn-option" href='<c:url value="/admin/edit/${institution.id}"/>'>Edit</a>
+                    <a class="btn-option" href='<c:url value="/admin/delete/${institution.id}"/>'>Usuń</a>
+                </td>
+            </tr>
+        <h2><a class="btn-option" href='<c:url value="/admin/add-institution"/>'>Dodać nową fundacje</a></br></h2>
+        </tbody>
+    </table>
+</div>
 </body>
 <jsp:include page="footer-admin.jsp"/>
