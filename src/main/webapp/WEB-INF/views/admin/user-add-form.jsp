@@ -73,7 +73,7 @@
     <form:label cssClass="label-admin" path="email" for="email">Email użytkownika:</form:label>
     <form:input cssClass="input-admin" path="email" type="text" name="email" id="email"/>
     <form:label cssClass="label-admin" path="password" for="password">Hasło użytkownika:</form:label>
-    <form:input cssClass="input-admin" path="password" type="text" name="password" id="password"/>
+    <form:input cssClass="input-admin" path="password" type="password" name="password" id="password"/>
 
     <input class="input-admin" type="submit" value="Dodać">
 </form:form>

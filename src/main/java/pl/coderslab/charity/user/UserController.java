@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Controller
@@ -56,5 +57,10 @@ public class UserController {
     public String showAddUserForm(Model model){
         model.addAttribute("user", new User());
         return "/admin/user-add-form";
+    }
+    @PostMapping("/admin/add-user")
+    public String addNewUser(User user){
+        userService.saveUser(user);
+        return "redirect:/admin/users-list";
     }
 }
