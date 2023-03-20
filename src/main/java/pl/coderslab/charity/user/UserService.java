@@ -8,4 +8,5 @@ public interface UserService {
     User findByEmail(String email);
     List<User> findAllWithUserRole();
     User findById(Long id);
+    void deleteById(Long id);
 }

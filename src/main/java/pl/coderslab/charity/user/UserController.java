@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashSet;
 import java.util.List;
@@ -61,6 +62,19 @@ public class UserController {
     @PostMapping("/admin/add-user")
     public String addNewUser(User user){
         userService.saveUser(user);
+        return "redirect:/admin/users-list";
+    }
+    @GetMapping("/admin/user-delete/{id}")
+    public String showUserDeleteConfirmForm(@PathVariable Long id, Model model){
+        User user = userService.findById(id);
+        model.addAttribute("user", user);
+        return "/admin/user-delete-confirm";
+    }
+    @PostMapping("/admin/user-delete")
+    public String deleteUserByAdmin(@RequestParam Long id){
+        User user = userService.findById(id);
+        user.setRoles(new HashSet<>());
+        userService.deleteById(user.getId());
         return "redirect:/admin/users-list";
     }
 }
