@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
 
-    <link rel="stylesheet" href="<c:url value="../resources/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="../../resources/css/style.css"/>"/>
 </head>
 <header class="header--form-page">
     <nav class="container container--70">
@@ -63,32 +63,19 @@
     </div>
 </header>
 <body>
-<h2><i>LISTA UŻYTKOWNIKÓW</i></h2>
-<div class="container-div">
-    <table>
-        <thead>
-        <tr>
-            <th>IMIĘ</th>
-            <th>NAZWISKO</th>
-            <th>AKCJE</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${users}" var="user">
-            <tr>
-                <input type="hidden" name="id" value="${user.id}" />
-                <td>${user.firstName}</td>
-                <td>${user.lastName}</td>
-                <td>
-                    <a class="btn-option" href='<c:url value="/admin/user-details/${user.id}"/>'>Szczegóły</a>
-                    <a class="btn-option" href='<c:url value="/admin/user-edit/${user.id}"/>'>Edit</a>
-                    <a class="btn-option" href='<c:url value="/admin/user-delete/${user.id}"/>'>Usuń</a>
-                </td>
-            </tr>
-        </c:forEach>
-        <h2><a class="btn-option" href='<c:url value="/admin/add-user"/>'>Dodać nowego użytkownika</a></br></h2>
-        </tbody>
-    </table>
-</div>
+<h2><i>DODAWANIE NOWEGO UŻYTKOWNIKA</i></h2>
+<form:form cssClass="form-admin" method="post" action="/admin/add-user" modelAttribute="user">
+    <h2>Dodanie nowego użytkownika</h2>
+    <form:label cssClass="label-admin" path="firstName" for="firstName">Imię użytkownika:</form:label>
+    <form:input cssClass="input-admin" path="firstName" type="text" name="firstName" id="firstName"/>
+    <form:label cssClass="label-admin" path="lastName" for="lastName">Nazwisko użytkownika:</form:label>
+    <form:input cssClass="input-admin" path="lastName" type="text" name="lastName" id="lastName"/>
+    <form:label cssClass="label-admin" path="email" for="email">Email użytkownika:</form:label>
+    <form:input cssClass="input-admin" path="email" type="text" name="email" id="email"/>
+    <form:label cssClass="label-admin" path="password" for="password">Hasło użytkownika:</form:label>
+    <form:input cssClass="input-admin" path="password" type="text" name="password" id="password"/>
+
+    <input class="input-admin" type="submit" value="Dodać">
+</form:form>
 </body>
 <jsp:include page="footer-admin.jsp"/>

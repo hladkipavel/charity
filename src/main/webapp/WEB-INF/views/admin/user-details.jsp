@@ -91,7 +91,7 @@
                 <a class="btn-option" href='<c:url value="/admin/user-delete/${user.id}"/>'>Usuń</a>
             </td>
         </tr>
-        <h2><a class="btn-option" href='<c:url value="/admin/add-institution"/>'>Dodać nowego użytkownika</a></br></h2>
+        <h2><a class="btn-option" href='<c:url value="/admin/add-user"/>'>Dodać nowego użytkownika</a></br></h2>
         </tbody>
     </table>
 </div>
