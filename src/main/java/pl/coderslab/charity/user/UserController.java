@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -32,5 +33,11 @@ public class UserController {
         List<User> users = userService.findAllWithUserRole();
         model.addAttribute("users", users);
         return "admin/users-list";
+    }
+    @GetMapping("/admin/user-edit/{id}")
+    public String showUserEditForm(@PathVariable Long id, Model model){
+        User user = userService.findById(id);
+        model.addAttribute("user", user);
+        return "/admin/user-edit-form";
     }
 }

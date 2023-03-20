@@ -7,4 +7,5 @@ public interface UserService {
     void saveUser(User user);
     User findByEmail(String email);
     List<User> findAllWithUserRole();
+    User findById(Long id);
 }
