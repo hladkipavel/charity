@@ -30,7 +30,7 @@
         <ul>
             <li><a href="/" class="btn btn--without-border active">Start</a></li>
             <li><a href="/admin/institution" class="btn btn--without-border">Fundacji</a></li>
-            <li><a href="/admin/users-list" class="btn btn--without-border">Użytkowniki</a></li>
+            <li><a href="/admin/users-list" class="btn btn--without-border">Użytkownicy</a></li>
             <li><a href="/" class="btn btn--without-border">Kontakt</a></li>
         </ul>
     </nav>
@@ -70,6 +70,7 @@
         <tr>
             <th>IMIĘ</th>
             <th>NAZWISKO</th>
+            <th>STATUS</th>
             <th>AKCJE</th>
         </tr>
         </thead>
@@ -79,6 +80,12 @@
                 <input type="hidden" name="id" value="${user.id}" />
                 <td>${user.firstName}</td>
                 <td>${user.lastName}</td>
+                <c:if test="${user.isBlocked()}">
+                    <td style="color: red ">Zablokowany</td>
+                </c:if>
+                <c:if test="${!user.isBlocked()}">
+                    <td style="color: green ">Aktywny</td>
+                </c:if>
                 <td>
                     <a class="btn-option" href='<c:url value="/admin/user-details/${user.id}"/>'>Szczegóły</a>
                     <a class="btn-option" href='<c:url value="/admin/user-edit/${user.id}"/>'>Edit</a>

@@ -91,6 +91,13 @@ public class UserController {
         userService.saveUser(user);
         return "redirect:/admin/users-list";
     }
+    @GetMapping("admin/user-unblock/{id}")
+    public String unblockUserByAdmin(@PathVariable Long id){
+        User user = userService.findById(id);
+        user.setBlocked(false);
+        userService.saveUser(user);
+        return "redirect:/admin/users-list";
+    }
     @PostMapping("/error")
     public String errorMessage(@RequestParam String username, Model model){
         User user = userService.findByEmail(username);
