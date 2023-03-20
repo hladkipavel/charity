@@ -52,4 +52,9 @@ public class UserController {
         return "/admin/user-details";
 
     }
+    @GetMapping("/admin/add-user")
+    public String showAddUserForm(Model model){
+        model.addAttribute("user", new User());
+        return "/admin/user-add-form";
+    }
 }
