@@ -71,6 +71,8 @@
             <th>IMIĘ</th>
             <th>NAZWISKO</th>
             <th>EMAIL</th>
+            <th>ROLE</th>
+            <th>AKCJE</th>
         </tr>
         </thead>
         <tbody>
@@ -81,7 +83,7 @@
             <td>${user.email}</td>
             <td>
                 <c:forEach items="${user.roles}" var="role">
-                    ${role}</br>
+                    ${role.name}</br>
                 </c:forEach>
             </td>
             <td>

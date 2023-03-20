@@ -68,8 +68,8 @@
     <table>
         <thead>
         <tr>
-            <th>NAZWA</th>
-            <th>OPIS</th>
+            <th>IMIĘ</th>
+            <th>NAZWISKO</th>
             <th>AKCJE</th>
         </tr>
         </thead>

@@ -53,7 +53,7 @@ public class InstitutionController {
         institutionService.deleteInstitution(id);
         return "redirect:/admin/institution";
     }
-    @GetMapping("/details/{id}")
+    @GetMapping("/inst-details/{id}")
     public String showInstDetails(@PathVariable Long id, Model model){
         Institution institution = institutionService.findById(id);
         model.addAttribute("institution", institution);
