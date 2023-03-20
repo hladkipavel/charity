@@ -20,7 +20,7 @@
             <li class="logged-user">
                 Witaj <sec:authentication property="principal.username"/>
                 <ul class="dropdown">
-                    <li><a href="#">Profil</a></li>
+                    <li><a href="/admin/details/${institution.id}">Profil</a></li>
                     <li><a href="#">Moje zbiórki</a></li>
                     <li><a href="/logout">Wyloguj</a></li>
                 </ul>
@@ -63,19 +63,35 @@
     </div>
 </header>
 <body>
-<h2><i>EDYCJA DANYCH UŻYTKOWNIKA</i></h2>
-<form:form cssClass="form-admin" method="post" action="/admin/user-edit" modelAttribute="user">
-    <h2>Edycja danych fundacji</h2>
-    <input class="input-admin" type="hidden" name="id" value="${user.id}" />
-    <label class="label-admin" for="firstName">Imię użytkownika:</label>
-    <input class="input-admin" type="text" name="firstName" id="firstName" required value="${user.firstName}">
-    <label class="label-admin" for="lastName">Nazwisko użytkownika:</label>
-    <input class="input-admin" type="text" name="lastName" id="lastName" required value="${user.lastName}">
-    <label class="label-admin" for="email">Email użytkownika:</label>
-    <input class="input-admin" type="text" name="email" id="email" required value="${user.email}">
-    <label class="label-admin" for="password">Hasło użytkownika:</label>
-    <input class="input-admin" type="password" name="password" id="password" required value="${user.password}">
-    <input class="input-admin" type="submit" value="Edytować">
-</form:form>
+<div class="container-div">
+    <table>
+        <h2><i>SZCZEGÓŁY UŻYTKOWNIKA</i></h2>
+        <thead>
+        <tr>
+            <th>IMIĘ</th>
+            <th>NAZWISKO</th>
+            <th>EMAIL</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <input type="hidden" name="id" value="${user.id}" />
+            <td>${user.firstName}</td>
+            <td>${user.lastName}</td>
+            <td>${user.email}</td>
+            <td>
+                <c:forEach items="${user.roles}" var="role">
+                    ${role}</br>
+                </c:forEach>
+            </td>
+            <td>
+                <a class="btn-option" href='<c:url value="/admin/user-edit/${user.id}"/>'>Edit</a>
+                <a class="btn-option" href='<c:url value="/admin/user-delete/${user.id}"/>'>Usuń</a>
+            </td>
+        </tr>
+        <h2><a class="btn-option" href='<c:url value="/admin/add-institution"/>'>Dodać nowego użytkownika</a></br></h2>
+        </tbody>
+    </table>
+</div>
 </body>
 <jsp:include page="footer-admin.jsp"/>
