@@ -40,4 +40,9 @@ public class UserController {
         model.addAttribute("user", user);
         return "/admin/user-edit-form";
     }
+    @PostMapping("/admin/user-edit")
+    public String editUser(User user){
+        userService.saveUser(user);
+        return "redirect:/admin/users-list";
+    }
 }
