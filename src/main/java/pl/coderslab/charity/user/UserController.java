@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 @AllArgsConstructor
 public class UserController {
@@ -24,5 +26,11 @@ public class UserController {
     public String saveRegisterUser(User user){
         userService.saveUser(user);
         return "redirect:/login";
+    }
+    @GetMapping("/admin/users-list")
+    public String showUsersList(Model model){
+        List<User> users = userService.findAllWithUserRole();
+        model.addAttribute("users", users);
+        return "admin/users-list";
     }
 }

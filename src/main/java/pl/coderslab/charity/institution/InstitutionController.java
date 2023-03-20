@@ -31,24 +31,24 @@ public class InstitutionController {
         institutionService.saveInstitution(institution);
         return "redirect:/admin/institution";
     }
-    @GetMapping("/edit/{id}")
+    @GetMapping("/inst-edit/{id}")
     public String editInstitutionForm(@PathVariable Long id, Model model){
         Institution institution = institutionService.findById(id);
         model.addAttribute("institution", institution);
         return "/admin/inst-edit-form";
     }
-    @PostMapping("/edit")
+    @PostMapping("/inst-edit")
     public String saveEditedInstitution(Institution institution){
         institutionService.saveInstitution(institution);
         return "redirect:/admin/institution";
     }
-    @GetMapping("/delete/{id}")
+    @GetMapping("/inst-delete/{id}")
     public String showDeleteConfirmForm(@PathVariable Long id, Model model){
         Institution institution = institutionService.findById(id);
         model.addAttribute("institution", institution);
         return "/admin/inst-delete-form";
     }
-    @PostMapping("/delete")
+    @PostMapping("/inst-delete")
     public String deleteInstitution(@RequestParam Long id){
         institutionService.deleteInstitution(id);
         return "redirect:/admin/institution";

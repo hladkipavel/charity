@@ -30,7 +30,7 @@
         <ul>
             <li><a href="/" class="btn btn--without-border active">Start</a></li>
             <li><a href="/admin/institution" class="btn btn--without-border">Fundacji</a></li>
-            <li><a href="/" class="btn btn--without-border">Użytkowniki</a></li>
+            <li><a href="/admin/users-list" class="btn btn--without-border">Użytkowniki</a></li>
             <li><a href="/" class="btn btn--without-border">Kontakt</a></li>
         </ul>
     </nav>
@@ -80,9 +80,9 @@
                      <td>${institution.name}</td>
                      <td>${institution.description}</td>
                      <td>
-                         <a class="btn-option" href='<c:url value="/admin/details/${institution.id}"/>'>Szczegóły</a>
-                         <a class="btn-option" href='<c:url value="/admin/edit/${institution.id}"/>'>Edit</a>
-                         <a class="btn-option" href='<c:url value="/admin/delete/${institution.id}"/>'>Usuń</a>
+                         <a class="btn-option" href='<c:url value="/admin/inst-details/${institution.id}"/>'>Szczegóły</a>
+                         <a class="btn-option" href='<c:url value="/admin/inst-edit/${institution.id}"/>'>Edit</a>
+                         <a class="btn-option" href='<c:url value="/admin/inst-delete/${institution.id}"/>'>Usuń</a>
                      </td>
                  </tr>
             </c:forEach>

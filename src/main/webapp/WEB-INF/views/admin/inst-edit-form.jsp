@@ -30,7 +30,7 @@
         <ul>
             <li><a href="/" class="btn btn--without-border active">Start</a></li>
             <li><a href="/admin/institution" class="btn btn--without-border">Fundacji</a></li>
-            <li><a href="/" class="btn btn--without-border">Użytkowniki</a></li>
+            <li><a href="/admin/users-list" class="btn btn--without-border">Użytkowniki</a></li>
             <li><a href="/" class="btn btn--without-border">Kontakt</a></li>
         </ul>
     </nav>
@@ -64,7 +64,7 @@
 </header>
 <body>
 <h2><i>EDYCJA DANYCH FUNDACJI</i></h2>
-<form:form cssClass="form-admin" method="post" action="/admin/edit" modelAttribute="institution">
+<form:form cssClass="form-admin" method="post" action="/admin/inst-edit" modelAttribute="institution">
     <h2>Edycja danych fundacji</h2>
     <input class="input-admin" type="hidden" name="id" value="${institution.id}" />
     <label class="label-admin" for="name">Imię fundacji:</label>

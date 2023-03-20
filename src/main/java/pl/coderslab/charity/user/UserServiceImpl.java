@@ -8,6 +8,7 @@ import pl.coderslab.charity.role.RoleRepository;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,5 +31,9 @@ public class UserServiceImpl implements UserService{
         return userRepository.findByEmail(email);
     }
 
+    @Override
+    public List<User> findAllWithUserRole(){
+        return userRepository.findAllWithUserRole();
+    }
 
 }
