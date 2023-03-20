@@ -20,7 +20,7 @@
             <li class="logged-user">
                 Witaj <sec:authentication property="principal.username"/>
                 <ul class="dropdown">
-                    <li><a href="/admin/details/${institution.id}">Profil</a></li>
+                    <li><a href="#">Profil</a></li>
                     <li><a href="#">Moje zbiórki</a></li>
                     <li><a href="/logout">Wyloguj</a></li>
                 </ul>
@@ -63,38 +63,17 @@
     </div>
 </header>
 <body>
-<div class="container-div">
-    <table>
-        <h2><i>SZCZEGÓŁY UŻYTKOWNIKA</i></h2>
-        <thead>
-        <tr>
-            <th>IMIĘ</th>
-            <th>NAZWISKO</th>
-            <th>EMAIL</th>
-            <th>ROLE</th>
-            <th>AKCJE</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <input type="hidden" name="id" value="${user.id}" />
-            <td>${user.firstName}</td>
-            <td>${user.lastName}</td>
-            <td>${user.email}</td>
-            <td>
-                <c:forEach items="${user.roles}" var="role">
-                    ${role.name}</br>
-                </c:forEach>
-            </td>
-            <td>
-                <a class="btn-option" href='<c:url value="/admin/user-block/${user.id}"/>'>Zablokuj</a>
-                <a class="btn-option" href='<c:url value="/admin/user-edit/${user.id}"/>'>Edytuj</a>
-                <a class="btn-option" href='<c:url value="/admin/user-delete/${user.id}"/>'>Usuń</a>
-            </td>
-        </tr>
-        <h2><a class="btn-option" href='<c:url value="/admin/add-user"/>'>Dodać nowego użytkownika</a></br></h2>
-        </tbody>
-    </table>
-</div>
+<form class="form-delete" action="/admin/user-block" method="post">
+    <input type="hidden" name="id" value="${user.id}">
+    <div class="form-container-delete">
+        <div class="form-delete">
+            <h3 class="h3-delete">Czy napewno chesz zablokowac użytkownika <strong>${user.firstName} ${user.lastName}</strong> ?</h3>
+            <div class="form-buttons-delete">
+                <input  type="submit" name="delete" value="Tak">
+                <a href='<c:url value="/admin/users-list"/>'>Nie</a>
+            </div>
+        </div>
+    </div>
+</form>
 </body>
 <jsp:include page="footer-admin.jsp"/>

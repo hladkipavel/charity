@@ -2,6 +2,7 @@ package pl.coderslab.charity.user;
 
 import lombok.AllArgsConstructor;
 
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +22,9 @@ public class SpringDataUserDetailsService implements UserDetailsService {
         User user = userServiceImpl.findByEmail(email);
         if (user == null) {
             throw new UsernameNotFoundException(email);
+        }
+        if(user.isBlocked()){
+            throw new LockedException("User account is locked");
         }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         user.getRoles().forEach(r ->

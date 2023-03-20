@@ -1,13 +1,14 @@
 package pl.coderslab.charity.user;
 
 import lombok.AllArgsConstructor;
+import org.springframework.boot.Banner;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
 import java.util.List;
 
@@ -77,4 +78,32 @@ public class UserController {
         userService.deleteById(user.getId());
         return "redirect:/admin/users-list";
     }
+    @GetMapping("admin/user-block/{id}")
+    public String showBlockUserConfirm(@PathVariable Long id, Model model){
+        User user = userService.findById(id);
+        model.addAttribute("user", user);
+        return "/admin/user-block-confirm";
+    }
+    @PostMapping("/admin/user-block")
+    public String blockUserByAdmin(@RequestParam Long id){
+        User user = userService.findById(id);
+        user.setBlocked(true);
+        userService.saveUser(user);
+        return "redirect:/admin/users-list";
+    }
+    @PostMapping("/error")
+    public String errorMessage(@RequestParam String username, Model model){
+        User user = userService.findByEmail(username);
+        if(user != null){
+            if(user.isBlocked()){
+                model.addAttribute("message", "Jesteś zablokowany/a przez administratora!");
+            }else {
+                model.addAttribute("message", "Podałeś/aś nipoprawne hasło!");
+            }
+        }else {
+            model.addAttribute("message", "Podałeś/aś nipoprawny email!");
+        }
+        return "error-page";
+    }
+
 }

@@ -1,9 +1,6 @@
 package pl.coderslab.charity.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import pl.coderslab.charity.donation.Donation;
 import pl.coderslab.charity.role.Role;
 
@@ -28,6 +25,9 @@ public class User {
     private boolean enabled;
     private String email;
     private String password;
+
+    private boolean isBlocked;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
