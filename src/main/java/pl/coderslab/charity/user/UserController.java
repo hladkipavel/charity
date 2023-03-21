@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -135,6 +136,18 @@ public class UserController {
         User admin =  userService.findById(id);
         model.addAttribute("admin", admin);
         return "/admin/admin-details";
+    }
+    @GetMapping("/admin/admin-edit/{id}")
+    public String showEditAdminForm(@PathVariable Long id, Model model){
+        User admin = userService.findById(id);
+        model.addAttribute("admin", admin);
+        return "/admin/admin-edit-form";
+    }
+    @PostMapping("/admin/admin-edit")
+    public String editAdminByAdmin(User admin){
+        System.out.println(admin);
+        userService.saveAdmin(admin);
+        return "redirect:/admin/admins-list";
     }
 
 }

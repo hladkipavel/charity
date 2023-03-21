@@ -64,7 +64,7 @@
     </div>
 </header>
 <body>
-<form class="form-delete" action="/admin/delete" method="post">
+<form class="form-delete" action="/admin/inst-delete" method="post">
     <input type="hidden" name="id" value="${institution.id}">
 <div class="form-container-delete">
     <div class="form-delete">
