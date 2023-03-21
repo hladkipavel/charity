@@ -151,6 +151,75 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.innerText = this.currentStep;
 
       // TODO: Validation
+      // STEP 1
+      const checkboxes = document.querySelectorAll('input[type=checkbox]');
+      const nextButton = document.getElementById('next-button');
+
+      checkboxes.forEach(checkbox=>{
+        checkbox.addEventListener('change', ()=>{
+          const check = Array.from(checkboxes).some(checkbox => checkbox.checked);
+          nextButton.disabled = !check;
+        });
+      });
+
+      // STEP 2
+      const quantity = document.querySelector('input[name=quantity]');
+      const nextButton2 = document.getElementById('next-button2');
+      quantity.addEventListener('input', ()=>{
+        nextButton2.disabled = quantity.value === '';
+      });
+
+      // STEP 3
+      const radioTypes = document.querySelectorAll('input[type=radio]');
+      const nextButton3 = document.getElementById('next-button3');
+      radioTypes.forEach(radio =>{
+        radio.addEventListener('change', () => {
+          nextButton3.disabled = false;
+        });
+      });
+
+      // STEP 4
+      const street = document.querySelector('input[name=street]');
+      const city = document.querySelector('input[name=city]');
+      const zipCode = document.querySelector('input[name=zipCode]');
+      const phone = document.querySelector('input[name=phone]');
+      const nextButton4 = document.getElementById('next-button4');
+      
+      [street, city, zipCode, phone].forEach(el => {
+        el.addEventListener('input', () =>{
+          const checkAllData = street.value !== '' && city.value !== '' && zipCode.value.match(/^[1-9]{1}\d{1}-\d{3}$/) && phone.value.match(/^[1-9]{1}\d{2} \d{3} \d{3}$/);
+          nextButton4.disabled = !checkAllData;
+        });
+      });
+
+      const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+      const day = String(currentDate.getDate()).padStart(2, '0');
+      const minDate = `${year}-${month}-${day}`;
+      const timeDefault =  String(currentDate.getHours()) + "\:" +  String(currentDate.getMinutes());
+      
+      document.querySelector('input[name=pickUpDate]').setAttribute('min', minDate);
+      document.querySelector('input[name=pickUpTime]').setAttribute('value', timeDefault);
+
+      // Validation ZipCode
+      zipCode.addEventListener('input', ()=>{
+        const input = zipCode.value.replace(/\D/g, '');
+        if(input.length > 2){
+          zipCode.value = `${input.slice(0, 2)}-${input.slice(2, 5)}`;
+        }
+      });
+        // Validation phone
+      phone.addEventListener('input', ()=>{
+        const inputPhone = phone.value.replace(/\D/g, '');
+        if(inputPhone.length > 3 && inputPhone.length < 7){
+          phone.value = `${inputPhone.slice(0, 3)} ${inputPhone.slice(3, 6)}`;
+        }else if(inputPhone.length >= 6){
+          phone.value = `${inputPhone.slice(0, 3)} ${inputPhone.slice(3, 6)} ${inputPhone.slice(6, 9)}`;
+        }
+      });
+
+
 
       this.slides.forEach(slide => {
         slide.classList.remove("active");
@@ -164,6 +233,57 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
       // TODO: get data from inputs and show them in summary
+      // COUNT BAGS WITH NAME
+      const countBags = document.querySelector('input[name=quantity]').value;
+      if(countBags == 1){
+        document.getElementById('sum-count').innerText = '1 worek: ';
+      }else if (countBags > 1 && countBags < 5){
+        document.getElementById('sum-count').innerText = countBags + ' worki: ';
+      }else{
+        document.getElementById('sum-count').innerText = countBags + ' worków: ';
+      };
+      
+      const categories = document.querySelectorAll('input[name=categories]');
+      categories.forEach(category => category.addEventListener('change', ()=>{
+        category.parentElement.children[2].toggleAttribute('mark');
+      }));
+      document.getElementById('next-button4').addEventListener('click', ()=>{
+        const allMarks = document.querySelectorAll('[mark]');
+        const namesOfCategories = [];
+        allMarks.forEach(el => namesOfCategories.push(el.innerHTML));
+        const sumCategory = document.getElementById('sum-category');
+        sumCategory.innerText = namesOfCategories.join('; ');
+      });
+
+      // INSTITUTION
+      const institutions = document.querySelectorAll('input[name=institution]');
+      institutions.forEach(inst => inst.addEventListener('change', ()=>{
+        inst.parentElement.children[2].children[0].toggleAttribute('markInst');
+      }));
+      document.getElementById('next-button4').addEventListener('click', ()=>{
+        const sumInst = document.getElementById('sum-institution');
+        console.log(sumInst);
+        const markInst = document.querySelector('[markInst]');
+        console.log(markInst);
+        sumInst.innerText = markInst.innerHTML;
+      });
+
+      // ADDRESS OF RECEIPT
+      document.getElementById('sum-street').innerText = street.value;
+      document.getElementById('sum-city').innerText = city.value;
+      document.getElementById('sum-zip').innerText = zipCode.value;
+      document.getElementById('sum-phone').innerText = phone.value;
+
+      // DATE OF RECEIPT
+      const date = document.querySelector('input[name=pickUpDate]');
+      date.defaultValue = minDate;
+      document.getElementById('sum-date').innerText = date.value;
+      const time = document.querySelector('input[name=pickUpTime]');
+      time.defaultValue = timeDefault;
+      document.getElementById('sum-time').innerText = time.value;
+      const comment = document.querySelector('textarea[name=pickUpComment]');
+      comment.defaultValue = 'brak uwagi';
+      document.getElementById('sum-comment').innerText = comment.value;
     }
 
   }
