@@ -9,4 +9,5 @@ public interface UserService {
     List<User> findAllWithUserRole();
     User findById(Long id);
     void deleteById(Long id);
+    List<User> findAllWithAdminRole();
 }

@@ -1,14 +1,11 @@
 package pl.coderslab.charity.user;
 
 import lombok.AllArgsConstructor;
-import org.springframework.boot.Banner;
-import org.springframework.security.authentication.LockedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
+
 import java.util.HashSet;
 import java.util.List;
 
@@ -111,6 +108,12 @@ public class UserController {
             model.addAttribute("message", "Podałeś/aś nipoprawny email!");
         }
         return "error-page";
+    }
+    @GetMapping("/admin/admins-list")
+    public String showAdminsList(Model model){
+        List<User> admins = userService.findAllWithAdminRole();
+        model.addAttribute("admins", admins);
+        return "/admin/admins-list";
     }
 
 }
