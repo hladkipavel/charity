@@ -1,6 +1,8 @@
 package pl.coderslab.charity.donation;
 
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.charity.category.Category;
 import pl.coderslab.charity.institution.Institution;
@@ -29,11 +31,13 @@ public class Donation {
 
     private Integer quantity;
     @ManyToMany
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinTable(name = "donations_categories",
     joinColumns = @JoinColumn(name = "donation_id"),
     inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories = new ArrayList<>();
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "institution_id")
     private Institution institution;
     private String phone;
