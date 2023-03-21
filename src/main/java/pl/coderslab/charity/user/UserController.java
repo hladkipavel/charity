@@ -91,7 +91,7 @@ public class UserController {
         userService.saveUser(user);
         return "redirect:/admin/users-list";
     }
-    @GetMapping("admin/user-unblock/{id}")
+    @GetMapping("/admin/user-unblock/{id}")
     public String unblockUserByAdmin(@PathVariable Long id){
         User user = userService.findById(id);
         user.setBlocked(false);
@@ -171,6 +171,13 @@ public class UserController {
     public String blockAdminByAdmin(@RequestParam Long id){
         User admin = userService.findById(id);
         admin.setBlocked(true);
+        userService.saveAdmin(admin);
+        return "redirect:/admin/admins-list";
+    }
+    @GetMapping("/admin/admin-unblock/{id}")
+    public String unblockAdminByAdmin(@PathVariable Long id){
+        User admin = userService.findById(id);
+        admin.setBlocked(false);
         userService.saveAdmin(admin);
         return "redirect:/admin/admins-list";
     }
