@@ -6,16 +6,21 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.role.Role;
+import pl.coderslab.charity.role.RoleRepository;
 
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
 public class UserController {
     private UserService userService;
+    private RoleRepository roleRepository;
 
     @GetMapping("/login")
     public String loginForm(){
@@ -181,5 +186,22 @@ public class UserController {
         userService.saveAdmin(admin);
         return "redirect:/admin/admins-list";
     }
-
+    @GetMapping("/profile-info")
+    public String showProfileInfo(@AuthenticationPrincipal UserDetails userDetails, Model model){
+        User authUser = userService.findByEmail(userDetails.getUsername());
+        model.addAttribute("authUser", authUser);
+        return "auth-profile-info";
+    }
+    @PostMapping("/profile-info")
+    public String editProfileInfo(User authUser){
+        User userBD = userService.findById(authUser.getId());
+        System.out.println();
+        List<Role> roles = userBD.getRoles().stream().collect(Collectors.toList());
+        if(roles.get(0).getName().equals("ROLE_ADMIN")) {
+            userService.saveAdmin(authUser);
+        }else{
+            userService.saveUser(authUser);
+        }
+        return "redirect:/";
+    }
 }
