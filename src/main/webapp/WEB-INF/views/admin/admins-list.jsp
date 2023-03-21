@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
 
-    <link rel="stylesheet" href="<c:url value="../../resources/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="../resources/css/style.css"/>"/>
 </head>
 <header class="header--form-page">
     <nav class="container container--70">
@@ -20,7 +20,7 @@
             <li class="logged-user">
                 Witaj <sec:authentication property="principal.username"/>
                 <ul class="dropdown">
-                    <li><a href="/admin/details/${institution.id}">Profil</a></li>
+                    <li><a href="#">Profil</a></li>
                     <li><a href="#">Moje zbiórki</a></li>
                     <li><a href="/logout">Wyloguj</a></li>
                 </ul>
@@ -64,27 +64,37 @@
     </div>
 </header>
 <body>
+<h2><i>LISTA ADMINISTRATORÓW</i></h2>
 <div class="container-div">
     <table>
-        <h2><i>SZCZEGÓŁY FUNDACJI</i></h2>
         <thead>
         <tr>
-            <th>NAZWA</th>
-            <th>OPIS</th>
+            <th>IMIĘ</th>
+            <th>NAZWISKO</th>
+            <th>STATUS</th>
             <th>AKCJE</th>
         </tr>
         </thead>
         <tbody>
+        <c:forEach items="${users}" var="user">
             <tr>
-                <input type="hidden" name="id" value="${institution.id}" />
-                <td>${institution.name}</td>
-                <td>${institution.description}</td>
+                <input type="hidden" name="id" value="${admin.id}" />
+                <td>${admin.firstName}</td>
+                <td>${admin.lastName}</td>
+                <c:if test="${admin.isBlocked()}">
+                    <td style="color: red ">Zablokowany</td>
+                </c:if>
+                <c:if test="${!admin.isBlocked()}">
+                    <td style="color: green ">Aktywny</td>
+                </c:if>
                 <td>
-                    <a class="btn-option" href='<c:url value="/admin/inst-edit/${institution.id}"/>'>Edit</a>
-                    <a class="btn-option" href='<c:url value="/admin/inst-delete/${institution.id}"/>'>Usuń</a>
+                    <a class="btn-option" href='<c:url value="/admin/admin-details/${admin.id}"/>'>Szczegóły</a>
+                    <a class="btn-option" href='<c:url value="/admin/admin-edit/${admin.id}"/>'>Edit</a>
+                    <a class="btn-option" href='<c:url value="/admin/admin-delete/${admin.id}"/>'>Usuń</a>
                 </td>
             </tr>
-        <h2><a class="btn-option" href='<c:url value="/admin/add-institution"/>'>Dodać nową fundacje</a></br></h2>
+        </c:forEach>
+        <h2><a class="btn-option" href='<c:url value="/admin/add-admin"/>'>Dodać nowego administratora</a></br></h2>
         </tbody>
     </table>
 </div>

@@ -31,6 +31,7 @@
             <li><a href="/" class="btn btn--without-border active">Start</a></li>
             <li><a href="/admin/institution" class="btn btn--without-border">Fundacji</a></li>
             <li><a href="/admin/users-list" class="btn btn--without-border">Użytkownicy</a></li>
+            <li><a href="/admin/users-list" class="btn btn--without-border">Administratorzy</a></li>
             <li><a href="/" class="btn btn--without-border">Kontakt</a></li>
         </ul>
     </nav>
