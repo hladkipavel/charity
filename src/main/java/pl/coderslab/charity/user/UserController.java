@@ -149,5 +149,18 @@ public class UserController {
         userService.saveAdmin(admin);
         return "redirect:/admin/admins-list";
     }
+    @GetMapping("/admin/admin-delete/{id}")
+    public String showDeleteFormConfirm(@PathVariable Long id, Model model){
+        User admin = userService.findById(id);
+        model.addAttribute("admin", admin);
+        return "/admin/admin-delete-confirm";
+    }
+    @PostMapping("/admin/admin-delete")
+        public String deleteAdminByAdmin(@RequestParam Long id){
+        User admin = userService.findById(id);
+        admin.setRoles(new HashSet<>());
+        userService.deleteById(admin.getId());
+        return "redirect:/admin/admins-list";
+    }
 
 }
