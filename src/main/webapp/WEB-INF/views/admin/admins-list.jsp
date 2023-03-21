@@ -76,7 +76,8 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${users}" var="user">
+        <c:forEach items="${admins}" var="admin">
+             <c:if test="${admin.email != authUsername}">
             <tr>
                 <input type="hidden" name="id" value="${admin.id}" />
                 <td>${admin.firstName}</td>
@@ -93,6 +94,7 @@
                     <a class="btn-option" href='<c:url value="/admin/admin-delete/${admin.id}"/>'>Usuń</a>
                 </td>
             </tr>
+             </c:if>
         </c:forEach>
         <h2><a class="btn-option" href='<c:url value="/admin/add-admin"/>'>Dodać nowego administratora</a></br></h2>
         </tbody>

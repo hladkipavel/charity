@@ -10,4 +10,5 @@ public interface UserService {
     User findById(Long id);
     void deleteById(Long id);
     List<User> findAllWithAdminRole();
+    void saveAdmin(User admin);
 }

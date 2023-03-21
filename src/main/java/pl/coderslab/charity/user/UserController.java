@@ -1,6 +1,8 @@
 package pl.coderslab.charity.user;
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -110,10 +112,23 @@ public class UserController {
         return "error-page";
     }
     @GetMapping("/admin/admins-list")
-    public String showAdminsList(Model model){
+    public String showAdminsList(@AuthenticationPrincipal UserDetails username, Model model){
         List<User> admins = userService.findAllWithAdminRole();
         model.addAttribute("admins", admins);
+        String authUserName = username.getUsername();
+        model.addAttribute("authUsername", authUserName);
+        System.out.println(username);
         return "/admin/admins-list";
+    }
+    @GetMapping("/admin/add-admin")
+    public String showAddAdminForm(Model model){
+        model.addAttribute("admin", new User());
+        return "/admin/admin-add-form";
+    }
+    @PostMapping("/admin/add-admin")
+    public String addNewAdmin(User admin){
+        userService.saveAdmin(admin);
+        return "redirect:/admin/admins-list";
     }
 
 }

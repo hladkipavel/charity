@@ -51,5 +51,14 @@ public class UserServiceImpl implements UserService{
         return userRepository.findAllWithAdminRole();
     }
 
+    @Override
+    public void saveAdmin(User admin) {
+        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+        admin.setEnabled(true);
+        Role adminRole = roleRepository.findByName("ROLE_ADMIN");
+        admin.setRoles(new HashSet<>(Arrays.asList(adminRole)));
+        userRepository.save(admin);
+    }
+
 
 }
