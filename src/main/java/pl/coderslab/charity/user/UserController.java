@@ -78,7 +78,7 @@ public class UserController {
         userService.deleteById(user.getId());
         return "redirect:/admin/users-list";
     }
-    @GetMapping("admin/user-block/{id}")
+    @GetMapping("/admin/user-block/{id}")
     public String showBlockUserConfirm(@PathVariable Long id, Model model){
         User user = userService.findById(id);
         model.addAttribute("user", user);
@@ -145,7 +145,6 @@ public class UserController {
     }
     @PostMapping("/admin/admin-edit")
     public String editAdminByAdmin(User admin){
-        System.out.println(admin);
         userService.saveAdmin(admin);
         return "redirect:/admin/admins-list";
     }
@@ -160,6 +159,19 @@ public class UserController {
         User admin = userService.findById(id);
         admin.setRoles(new HashSet<>());
         userService.deleteById(admin.getId());
+        return "redirect:/admin/admins-list";
+    }
+    @GetMapping("/admin/admin-block/{id}")
+    public String showBlockAdminForm(@PathVariable Long id, Model model) {
+        User admin = userService.findById(id);
+        model.addAttribute("admin", admin);
+        return "/admin/admin-block-confirm";
+    }
+    @PostMapping("/admin/admin-block")
+    public String blockAdminByAdmin(@RequestParam Long id){
+        User admin = userService.findById(id);
+        admin.setBlocked(true);
+        userService.saveAdmin(admin);
         return "redirect:/admin/admins-list";
     }
 

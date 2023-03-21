@@ -20,7 +20,7 @@
             <li class="logged-user">
                 Witaj <sec:authentication property="principal.username"/>
                 <ul class="dropdown">
-                    <li><a href="/admin/details/${institution.id}">Profil</a></li>
+                    <li><a href="#">Profil</a></li>
                     <li><a href="#">Moje zbiórki</a></li>
                     <li><a href="/logout">Wyloguj</a></li>
                 </ul>
@@ -64,50 +64,17 @@
     </div>
 </header>
 <body>
-<div class="container-div">
-    <table>
-        <h2><i>SZCZEGÓŁY ADMINISTRATORA</i></h2>
-        <thead>
-        <tr>
-            <th>IMIĘ</th>
-            <th>NAZWISKO</th>
-            <th>EMAIL</th>
-            <th>ROLE</th>
-            <th>STATUS</th>
-            <th>AKCJE</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <input type="hidden" name="id" value="${admin.id}" />
-            <td>${admin.firstName}</td>
-            <td>${admin.lastName}</td>
-            <td>${admin.email}</td>
-            <td>
-                <c:forEach items="${admin.roles}" var="role">
-                    ${role.name}</br>
-                </c:forEach>
-            </td>
-            <c:if test="${admin.isBlocked()}">
-                <td style="color: red ">Zablokowany</td>
-            </c:if>
-            <c:if test="${!admin.isBlocked()}">
-                <td style="color: green ">Aktywny</td>
-            </c:if>
-            <td>
-                <c:if test="${!admin.isBlocked()}">
-                <a class="btn-option" href='<c:url value="/admin/admin-block/${admin.id}"/>'>Zablokuj</a>
-                </c:if>
-                <c:if test="${admin.isBlocked()}">
-                <a class="btn-option" href='<c:url value="/admin/admin-unblock/${admin.id}"/>'>Odblokuj</a>
-                </c:if>
-                <a class="btn-option" href='<c:url value="/admin/admin-edit/${admin.id}"/>'>Edytuj</a>
-                <a class="btn-option" href='<c:url value="/admin/admin-delete/${admin.id}"/>'>Usuń</a>
-            </td>
-        </tr>
-        <h2><a class="btn-option" href='<c:url value="/admin/add-admin"/>'>Dodać nowego administratora</a></br></h2>
-        </tbody>
-    </table>
-</div>
+<form class="form-delete" action="/admin/admin-block" method="post">
+    <input type="hidden" name="id" value="${admin.id}">
+    <div class="form-container-delete">
+        <div class="form-delete">
+            <h3 class="h3-delete">Czy napewno chesz zablokowac administratora <strong>${admin.firstName} ${admin.lastName}</strong> ?</h3>
+            <div class="form-buttons-delete">
+                <input  type="submit" name="delete" value="Tak">
+                <a href='<c:url value="/admin/admins-list"/>'>Nie</a>
+            </div>
+        </div>
+    </div>
+</form>
 </body>
 <jsp:include page="footer-admin.jsp"/>

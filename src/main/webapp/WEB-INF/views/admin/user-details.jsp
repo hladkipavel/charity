@@ -95,8 +95,12 @@
                 <td style="color: green ">Aktywny</td>
             </c:if>
             <td>
-                <a class="btn-option" href='<c:url value="/admin/user-block/${user.id}"/>'>Zablokuj</a>
-                <a class="btn-option" href='<c:url value="/admin/user-unblock/${user.id}"/>'>Odblokuj</a>
+                <c:if test="${!user.isBlocked()}">
+                    <a class="btn-option" href='<c:url value="/admin/user-block/${user.id}"/>'>Zablokuj</a>
+                </c:if>
+                <c:if test="${user.isBlocked()}">
+                    <a class="btn-option" href='<c:url value="/admin/user-unblock/${user.id}"/>'>Odblokuj</a>
+                </c:if>
                 <a class="btn-option" href='<c:url value="/admin/user-edit/${user.id}"/>'>Edytuj</a>
                 <a class="btn-option" href='<c:url value="/admin/user-delete/${user.id}"/>'>Usuń</a>
             </td>
