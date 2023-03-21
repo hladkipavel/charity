@@ -64,7 +64,6 @@
     </div>
 </header>
 <body>
-<h2><i>DODAWANIE NOWEGO ADMINISTRATORA</i></h2>
 <form:form cssClass="form-admin" method="post" action="/admin/add-admin" modelAttribute="admin">
     <h2>Dodanie nowego administratora</h2>
     <form:label cssClass="label-admin" path="firstName" for="firstName">Imię administrarora:</form:label>

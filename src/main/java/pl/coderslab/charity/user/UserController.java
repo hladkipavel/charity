@@ -130,5 +130,11 @@ public class UserController {
         userService.saveAdmin(admin);
         return "redirect:/admin/admins-list";
     }
+    @GetMapping("/admin/admin-details/{id}")
+    public String showAdminDetails(@PathVariable Long id, Model model){
+        User admin =  userService.findById(id);
+        model.addAttribute("admin", admin);
+        return "/admin/admin-details";
+    }
 
 }

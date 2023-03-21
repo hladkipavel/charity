@@ -64,7 +64,7 @@
     </div>
 </header>
 <body>
-<h2><i>DODAWANIE NOWEGO UŻYTKOWNIKA</i></h2>
+
 <form:form cssClass="form-admin" method="post" action="/admin/add-user" modelAttribute="user">
     <h2>Dodanie nowego użytkownika</h2>
     <form:label cssClass="label-admin" path="firstName" for="firstName">Imię użytkownika:</form:label>

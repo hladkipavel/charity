@@ -64,7 +64,6 @@
     </div>
 </header>
 <body>
-<h2><i>DODAWANIE NOWEJ FUNDACJI</i></h2>
 <form:form cssClass="form-admin" method="post" action="/admin/add-institution" modelAttribute="institution">
     <h2>Dodanie nowej fundacji</h2>
     <form:label cssClass="label-admin" path="name" for="name">Imię fundacji:</form:label>

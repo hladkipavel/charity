@@ -64,7 +64,6 @@
     </div>
 </header>
 <body>
-<h2><i>EDYCJA DANYCH UŻYTKOWNIKA</i></h2>
 <form:form cssClass="form-admin" method="post" action="/admin/user-edit" modelAttribute="user">
     <h2>Edycja danych fundacji</h2>
     <input class="input-admin" type="hidden" name="id" value="${user.id}" />
