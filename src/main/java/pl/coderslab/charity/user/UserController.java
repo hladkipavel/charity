@@ -1,6 +1,7 @@
 package pl.coderslab.charity.user;
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
