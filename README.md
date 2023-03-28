@@ -22,5 +22,5 @@ In the verified places you have to go, and there is no time or there is no way t
 ## Installation :eyes:
 Before you can build and run this application, you need to have the following software installed on your machine: 
 
-Java JDK version 11 or later
-Maven version 3.6 or later
+- Java JDK version 11 or later
+- Maven version 3.6 or later
