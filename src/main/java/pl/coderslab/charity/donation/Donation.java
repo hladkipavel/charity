@@ -53,6 +53,8 @@ public class Donation {
     private LocalTime pickUpTime;
     @Size(min=5)
     private String pickUpComment;
+    @ManyToOne
+    private User user;
 
     public Donation(Integer quantity, String phone, String street, String city, String zipCode) {
         this.quantity = quantity;

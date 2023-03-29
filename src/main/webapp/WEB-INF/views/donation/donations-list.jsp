@@ -30,7 +30,6 @@
         <ul>
             <li><a href="/" class="btn btn--without-border active">Start</a></li>
             <li><a href="/admin/institution" class="btn btn--without-border">Fundacji</a></li>
-            <li><a href="/donation/donations-list" class="btn btn--without-border">Donacji</a></li>
             <li><a href="/admin/users-list" class="btn btn--without-border">Użytkownicy</a></li>
             <li><a href="/admin/admins-list" class="btn btn--without-border">Administratorzy</a></li>
             <li><a href="#contact1" class="btn btn--without-border">Kontakt</a></li>
@@ -65,17 +64,39 @@
     </div>
 </header>
 <body>
-<form class="form-delete" action="/admin/user-block" method="post">
-    <input type="hidden" name="id" value="${user.id}">
-    <div class="form-container-delete">
-        <div class="form-delete">
-            <h3 class="h3-delete">Czy napewno chesz zablokowac użytkownika <strong>${user.firstName} ${user.lastName}</strong> ?</h3>
-            <div class="form-buttons-delete">
-                <input  type="submit" name="delete" value="Tak">
-                <a href='<c:url value="/admin/users-list"/>'>Nie</a>
-            </div>
-        </div>
-    </div>
-</form>
+<h2><i>LISTA DONACJI</i></h2>
+<div class="container-div">
+    <table>
+        <thead>
+        <tr>
+            <th>NAZWA</th>
+            <th>OPIS</th>
+            <th>AKCJE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${donations}" var="donation" varStatus="status">
+            <tr>
+                <input type="hidden" name="id" value="${institution.id}" />
+                <td>${varStatus="status"}</td>
+                <td>${donation.city}</td>
+                <td>${donation.street}</td>
+                <td>${donation.phone}</td>
+                <td>${donation.pickUpComment}</td>
+                <td>${donation.pickUpDate}</td>
+                <td>${donation.pickUpTime}</td>
+                <td>${donation.quantity}</td>
+                <td>${donation.zipCode}</td>
+                <td>
+                    <a class="btn-option" href='<c:url value="/admin/inst-details/${institution.id}"/>'>Szczegóły</a>
+                    <a class="btn-option" href='<c:url value="/admin/inst-edit/${institution.id}"/>'>Edit</a>
+                    <a class="btn-option" href='<c:url value="/admin/inst-delete/${institution.id}"/>'>Usuń</a>
+                </td>
+            </tr>
+        </c:forEach>
+        <h2><a class="btn-option" href='<c:url value="../../admin/add-institution"/>'>Dodać nową fundacje</a></br></h2>
+        </tbody>
+    </table>
+</div>
 </body>
-<jsp:include page="footer-admin.jsp"/>
+<jsp:include page="../admin/footer-admin.jsp"/>

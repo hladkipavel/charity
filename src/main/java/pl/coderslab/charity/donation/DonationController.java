@@ -22,14 +22,13 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/form")
 public class DonationController {
     private CategoryService categoryService;
     private InstitutionService institutionService;
     private DonationService donationService;
     private UserRepository userRepository;
 
-    @GetMapping
+    @GetMapping("/form")
     public String showFrom(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
@@ -38,11 +37,11 @@ public class DonationController {
         model.addAttribute("donation", donation);
         model.addAttribute("userName", user.getFirstName());
         if(authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))){
-            return "admin/admin-form";
+            return "/admin/admin-form";
         }
         return "form";
     }
-    @PostMapping
+    @PostMapping("/form")
     public String saveDonation(Donation donation){
         donationService.saveDonation(donation);
         return "form-confirmation";
@@ -55,5 +54,15 @@ public class DonationController {
     @ModelAttribute("institutions")
     public List<Institution> getAllInstitutions(){
         return institutionService.getAllInstitutions();
+    }
+
+    @GetMapping("/donation/donations-list")
+    public String showDonationsList(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User user = userRepository.findByEmail(username);
+        List<Donation> donations = donationService.getDonationsByUserId(user.getId());
+        model.addAttribute("donations", donations);
+        return "/admin/donation/donations-list";
     }
 }

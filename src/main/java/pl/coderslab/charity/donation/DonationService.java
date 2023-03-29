@@ -24,4 +24,7 @@ public class DonationService {
     public Integer getSumAllDonations(){
         return donationRepository.sumAllDonations();
     }
+    public List<Donation> getDonationsByUserId(Long id){
+        return donationRepository.getAllDonationsByUserId(id);
+    }
 }
