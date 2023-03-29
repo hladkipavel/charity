@@ -16,9 +16,9 @@
         <sec:authorize access="isAuthenticated()">
             <ul class="nav--actions">
                 <li class="logged-user">
-                    Witaj <sec:authentication property="principal.username"/>
+                    Witaj <sec:authentication property="principal.name"/>
                     <ul class="dropdown">
-                        <li><a href="#">Profil</a></li>
+                        <li><a href="/profile-info">Profil</a></li>
                         <li><a href="#">Moje zbiórki</a></li>
                         <li><a href="/logout">Wyloguj</a></li>
                     </ul>
@@ -92,7 +92,7 @@
     <a href="#" class="btn btn--large">Załóż konto</a>
 </section>
 
-<section class="about-us">
+<section id="about-us" class="about-us">
     <div class="about-us--text">
         <h2>O nas</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero
@@ -103,7 +103,7 @@
     </div>
 </section>
 
-<section class="help">
+<section id="help" class="help">
     <h2>Komu pomagamy?</h2>
 
     <!-- SLIDE 1 -->

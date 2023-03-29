@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
 
-    <link rel="stylesheet" href="<c:url value="../resources/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="../../resources/css/style.css"/>"/>
 </head>
 <header class="header--form-page">
     <nav class="container container--70">
@@ -32,7 +32,7 @@
             <li><a href="/admin/institution" class="btn btn--without-border">Fundacji</a></li>
             <li><a href="/admin/users-list" class="btn btn--without-border">Użytkownicy</a></li>
             <li><a href="/admin/admins-list" class="btn btn--without-border">Administratorzy</a></li>
-            <li><a href="#contact1" class="btn btn--without-border">Kontakt</a></li>
+            <li><a href="#contact" class="btn btn--without-border">Kontakt</a></li>
         </ul>
     </nav>
 
@@ -64,32 +64,18 @@
     </div>
 </header>
 <body>
-<h2><i>LISTA FUNDACJI</i></h2>
-         <div class="container-div">
-             <table>
-                 <thead>
-                 <tr>
-                     <th>NAZWA</th>
-                     <th>OPIS</th>
-                     <th>AKCJE</th>
-                 </tr>
-                 </thead>
-                 <tbody>
-            <c:forEach items="${institutions}" var="institution" varStatus="status">
-                 <tr>
-                     <input type="hidden" name="id" value="${institution.id}" />
-                     <td>${institution.name}</td>
-                     <td>${institution.description}</td>
-                     <td>
-                         <a class="btn-option" href='<c:url value="/admin/inst-details/${institution.id}"/>'>Szczegóły</a>
-                         <a class="btn-option" href='<c:url value="/admin/inst-edit/${institution.id}"/>'>Edit</a>
-                         <a class="btn-option" href='<c:url value="/admin/inst-delete/${institution.id}"/>'>Usuń</a>
-                     </td>
-                 </tr>
-            </c:forEach>
-                 <h2><a class="btn-option" href='<c:url value="/admin/add-institution"/>'>Dodać nową fundacje</a></br></h2>
-                 </tbody>
-             </table>
-         </div>
+<form:form cssClass="form-admin" method="post" action="/profile-info" modelAttribute="authUser">
+    <h2>MOJE DANE</h2>
+    <input class="input-admin" type="hidden" name="id" value="${authUser.id}" />
+    <label class="label-admin" for="firstName">Imię:</label>
+    <input class="input-admin" type="text" name="firstName" id="firstName" required value="${authUser.firstName}">
+    <label class="label-admin" for="lastName">Nazwisko:</label>
+    <input class="input-admin" type="text" name="lastName" id="lastName" required value="${authUser.lastName}">
+    <label class="label-admin" for="email">Email:</label>
+    <input class="input-admin" type="text" name="email" id="email" required value="${authUser.email}">
+    <label class="label-admin" for="password">Hasło:</label>
+    <input class="input-admin" type="password" name="password" id="password" required value="${authUser.password}">
+    <input class="input-admin" type="submit" value="Edytować">
+</form:form>
 </body>
-<jsp:include page="footer-admin.jsp"/>
+<jsp:include page="footer.jsp"/>

@@ -9,9 +9,9 @@
     <nav class="container container--70">
         <ul class="nav--actions">
             <li class="logged-user">
-                Witaj <sec:authentication property="principal.username"/>
+                Witaj <sec:authentication property="principal.name"/>
                 <ul class="dropdown">
-                    <li><a href="#">Profil</a></li>
+                    <li><a href="/profile-info">Profil</a></li>
                     <li><a href="#">Moje zbiórki</a></li>
                     <li><a href="/logout">Wyloguj</a></li>
                 </ul>
@@ -23,7 +23,7 @@
             <li><a href="/admin/institution" class="btn btn--without-border">Fundacji</a></li>
             <li><a href="/admin/users-list" class="btn btn--without-border">Użytkownicy</a></li>
             <li><a href="/admin/admins-list" class="btn btn--without-border">Administratorzy</a></li>
-            <li><a href="/" class="btn btn--without-border">Kontakt</a></li>
+            <li><a href="#contact1" class="btn btn--without-border">Kontakt</a></li>
         </ul>
     </nav>
 

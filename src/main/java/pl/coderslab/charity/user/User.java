@@ -22,9 +22,9 @@ public class User {
     private Long id;
     private String firstName;
     private String lastName;
-    private boolean enabled;
     private String email;
     private String password;
+    private boolean enabled;
 
     private boolean isBlocked;
 
@@ -33,9 +33,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    public User(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
     }

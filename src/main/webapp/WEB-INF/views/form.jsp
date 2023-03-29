@@ -9,7 +9,7 @@
     <nav class="container container--70">
         <ul class="nav--actions">
             <li class="logged-user">
-                Witaj <sec:authentication property="principal.username"/>
+                Witaj <sec:authentication property="principal.name"/>
                 <ul class="dropdown">
                     <li><a href="#">Profil</a></li>
                     <li><a href="#">Moje zbiórki</a></li>
@@ -20,8 +20,8 @@
 
         <ul>
             <li><a href="/" class="btn btn--without-border active">Start</a></li>
-            <li><a href="../../resources/html/index.html#help" class="btn btn--without-border">Fundacje i organizacje</a></li>
-            <li><a href="../../resources/html/index.html#contact" class="btn btn--without-border">Kontakt</a></li>
+            <li><a href="/" class="btn btn--without-border">Fundacje i organizacje</a></li>
+            <li><a href="#contact" class="btn btn--without-border">Kontakt</a></li>
         </ul>
     </nav>
 
